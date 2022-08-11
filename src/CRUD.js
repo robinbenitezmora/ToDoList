@@ -58,7 +58,7 @@ remove.forEach((item) => {
 });
 };
 
-const deleteActivity = (activity) => {
+const removeActivity = (activity) => {
   list.removeChild(activity);
   let count = 0;
   const localData = JSON.parse(localStorage.getItem('task'));
@@ -155,5 +155,4 @@ removeBtn.addEventListener('click', () => {
   clearAllFields();
 });
 
-
-
+export { addActivity, removeActivity, activities, updateStorage };
