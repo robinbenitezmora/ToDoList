@@ -4,7 +4,7 @@
 
 
 >
-This project is a basic website that will allow to the users to add, remove, get and save books from a group or list using JavaScript objects, modules and ES6 in order it is more flexible in its functioning.
+This project is a basic website that will allow to the users to add, remove, get and save tasks from a group or list using JavaScript objects, modules and ES6.
 
 ## Built With
 
@@ -41,11 +41,13 @@ If you want to clone this project:
 ### Install
 Clone this repository (you must have [Git Installed](https://github.com/git-guides/install-git))
 
-`git clone git@github.com:robinbenitezmora/books-es6.git`
+`git clone git@github.com:robinbenitezmora/ToDoList.git`
 
-Then, move to the newly created folder `books-es6` using this command
+Then, move to the newly created folder `ToDoList` using this command
 
-`cd books-es6`
+`cd ToDoList`
+
+Then, install dependencies using this command
 
 To open the project in Visual Studio Code type the following command inside the _books_with_es6_ folder
 
@@ -67,7 +69,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
--I thank Microverse for its documentation.
+-I thank Microverse for its documentation, and my mentor, David Verde for his support and guidance.
 
 ## 📝 License
 
