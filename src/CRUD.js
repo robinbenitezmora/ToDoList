@@ -1,5 +1,7 @@
 import { storage } from "./storage.js";
-import { clearAllFields } from "./clearAllFields.js";
+import { clearAllFields } from "./clean.js";
+
+export { addActivity, removeActivity, activities, updateStorage };
 
 const list = document.getElementById("to-do-list");
 const removeBtn = document.getElementById('clearBtn');
@@ -154,5 +156,3 @@ const updateStorage = () => {
 removeBtn.addEventListener('click', () => {
   clearAllFields();
 });
-
-export { addActivity, removeActivity, activities, updateStorage };
