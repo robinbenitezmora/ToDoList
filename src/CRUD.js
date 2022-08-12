@@ -1,7 +1,9 @@
-import { storage } from "./storage.js";
-import { clearAllFields } from "./clean.js";
+import { storage } from './storage.js';
+import { clearAllFields } from './clean.js';
 
-const list = document.getElementById("to-do-list");
+export { addActivity, removeActivity, activities, updateStorage };
+
+const list = document.getElementById('to-do-list');
 const removeBtn = document.getElementById('clearBtn');
 
 class Activities {
@@ -10,14 +12,14 @@ class Activities {
     this.completed = completed;
     this.index = index;
   }
-};
+}
 
-let activities = [];
+const activities = [];
 
 const addActivity = (activityValue) => {
   const localData = JSON.parse(localStorage.getItem('task'));
   localData.map((item) => activities.push(item));
-  const ativitiyContainer = document.createElement('li');
+  const activitiyContainer = document.createElement('li');
   activitiyContainer.className = 'list-item';
   activitiyContainer.innerHTML += `
     <input type= 'checkbox' class='checkbox'>
@@ -28,27 +30,12 @@ const addActivity = (activityValue) => {
   list.appendChild(ativitiyContainer);
 
   const checkbox = document.querySelectorAll('.checkbox');
-  checkbox.forEach((item) => {
-    item.addEventListener('change', () => {
-      item.parentElement.classList.toggle('selected-item');
-      item.nextElementSibling.classList.toggle('text-selected');
-      item.parentElement.lastElementChild.classList.toggle('delete-icon-selected');
-      item.parentElement.lastElementChild.previousElementSibling.classList.toggle('disable-edit');
-      updateStorage();
-    });
-  });
 
   const newActivity = new Activities(activityValue, false, checkbox.length);
   activities.push(newActivity);
   storage(activities);
 
   const edit = document.querySelectorAll('.fa-ellipsis-v');
-  edit.forEach((item) => {
-    item.addEventListener('click', () => {
-      editActivity(activitiyContainer, item.previousElementSibling);
-      item.parentElement.classList.add('selected-item');
-    });
-  });
 
   const remove = document.querySelectorAll('.fa-trash');
   remove.forEach((item) => {
@@ -66,6 +53,7 @@ const removeActivity = (activity) => {
   data.map((item) => item.index = count += 1);
   storage(data);
 };
+
 const editActivity = (activitiyContainer, activity) => {
   const editText = document.createElement('input');
   editText.type = 'text';
@@ -151,8 +139,23 @@ const updateStorage = () => {
   storage(localData);
 };
 
+checkbox.forEach((item) => {
+  item.addEventListener('change', () => {
+    item.parentElement.classList.toggle('selected-item');
+    item.nextElementSibling.classList.toggle('text-selected');
+    item.parentElement.lastElementChild.classList.toggle('delete-icon-selected');
+    item.parentElement.lastElementChild.previousElementSibling.classList.toggle('disable-edit');
+    updateStorage();
+  });
+});
+
+edit.forEach((item) => {
+  item.addEventListener('click', () => {
+    editActivity(activityContainer, item.previousElementSibling);
+    item.parentElement.classList.add('selected-item');
+  });
+});
+
 removeBtn.addEventListener('click', () => {
   clearAllFields();
 });
-
-export { addActivity, removeActivity, activities, updateStorage };

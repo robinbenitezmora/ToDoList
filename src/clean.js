@@ -1,7 +1,5 @@
-import { storage } from "./storage.js";
+import { storage } from './storage.js';
 import { removeActivity } from './CRUD.js';
-
-export { clearAllFields };
 
 const clearAllFields = () => {
   const localData = JSON.parse(localStorage.getItem('task'));
@@ -16,3 +14,5 @@ const clearAllFields = () => {
   data.map((e) => e.index = count += 1);
   storage(data);
 };
+
+export { clearAllFields };
