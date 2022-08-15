@@ -1,4 +1,4 @@
-const { get } = require("lodash");
+// const { get } = require("lodash");
 
 const list = document.getElementById('list');
 const input = document.getElementById('input');
@@ -12,7 +12,7 @@ let id;
 const addTask = (task, id, finished, eliminated) => {
   if (eliminated) {
     return;
-  };
+  }
   const FINISHED = finished ? check : uncheck;
   const LINE = finished ? lineThrough : '';
   const item = `        
@@ -30,15 +30,13 @@ const taskFinished = (element) => {
   element.classList.toggle(check);
   element.classList.toggle(uncheck);
   element.parentNode.querySelector('.text').classList.toggle(lineThrough);
-  LIST[element.id].finished = LIST[element.id].finished ? false : true;
-}
+  LIST[element.id].finished = !LIST[element.id].finished;
+};
 
 const taskEliminated = (element) => {
   element.parentNode.parentNode.removeChild(element.parentNode);
   LIST[element.id].eliminated = true;
-}
-
-
+};
 
 buttonEnter.addEventListener('click', () => {
   const task = input.value;
@@ -46,14 +44,14 @@ buttonEnter.addEventListener('click', () => {
     addTask(task, id, false, false);
     LIST.push({
       name: task,
-      id: id,
+      Id: id,
       finished: false,
-      eliminated: false
-  });
-  localStorage.setItem('TODO', JSON.stringify(LIST));
-  input.value = '';
-  id += 1;
-}
+      eliminated: false,
+    });
+    localStorage.setItem('TODO', JSON.stringify(LIST));
+    input.value = '';
+    id += 1;
+  }
 });
 
 document.addEventListener('keyup', (e) => {
@@ -63,22 +61,22 @@ document.addEventListener('keyup', (e) => {
       addTask(task, id, false, false);
       LIST.push({
         name: task,
-        id: id,
+        Id: id,
         finished: false,
-        eliminated: false
-    });
-    localStorage.setItem('TODO', JSON.stringify(LIST));
-    input.value = '';
-    id += 1;
+        eliminated: false,
+      });
+      localStorage.setItem('TODO', JSON.stringify(LIST));
+      input.value = '';
+      id += 1;
+    }
   }
-}
 });
 
 list.addEventListener('click', (e) => {
   const element = e.target;
   const elementData = element.attributes.data.value;
   if ((elementData === 'finished')) {
-    taskFinished(element); 
+    taskFinished(element);
   } else if (elementData === 'eliminated') {
     taskEliminated(element);
   }
@@ -86,7 +84,13 @@ list.addEventListener('click', (e) => {
 });
 
 // Local Storage getItem
-let data = localStorage.getItem('TODO');
+const loadList = (DATA) => {
+  DATA.forEach((item) => {
+    addTask(item.name, item.id, item.finished, item.eliminated);
+  });
+};
+
+const data = localStorage.getItem('TODO');
 if (data) {
   LIST = JSON.parse(data);
   id = LIST.length;
@@ -94,10 +98,4 @@ if (data) {
 } else {
   LIST = [];
   id = 0;
-}
-
-const loadList = (DATA) => {
-  DATA.forEach(item => {
-    addTask(item.name, item.id, item.finished, item.eliminated);
-  });
 }
