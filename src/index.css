@@ -60,23 +60,11 @@ h2 {
   font-weight: 300;
   color: #333;
   font-style: italic;
-  border: none;
-  border-radius: 0.5rem;
 }
 
 .add-task i {
   font-size: 2rem;
   color: #333;
-}
-
-.add-task i:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
-.add-task input::placeholder {
-  font-size: 1.1rem;
-  font-weight: 300;
 }
 
 /* Task List */
@@ -112,4 +100,12 @@ h2 {
   text-decoration: line-through;
 }
 
+.add-task i:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
 
+.add-task input::placeholder {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
