@@ -9,17 +9,16 @@
 </head>
 <body>
   <div class="container" id="container">
-    <h1 class="container__title">Today's To Do</h1>
-    <form action="/" class="formulary">
-      <div class="formulary__data">      
-        <input type="text" name="task" id="task" class="formulary__input" placeholder="Add to your list...">
-        <button type="button" class="formulary__add-button" id="add-button"></button>
-      </div>
-      <div class="formulary__to-do" id="to-do-list"></div>
-      <div class="formulary__clear-button">
-        <button type="button" class="formulary__button" id="clearBtn">Clear all Completed</button>
-      </div>
-    </form>
+    <h2>ToDoList</h2>
+    <div class="add-task">
+      <input type="text" id="input" placeholder="Add new task...">
+      <i class="fas fa-plus-circle" id="enter"></i>
+    </div>
+    <div class="task">
+      <ul id="list">
+      </ul>
+    </div>
   </div>
+  <script src="./index.js"></script>
 </body>
 </html>
